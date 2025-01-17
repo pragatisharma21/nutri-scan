@@ -1,1 +1,24 @@
 [INFO] 2025-01-18 01:34:03 - POST /api/user/signup [32m201[0m 209.076ms - PostmanRuntime/7.43.0
+[ERROR] 2025-01-18 02:31:14 - Error: Cannot read properties of undefined (reading 'userId') | URL: /api/dish/ | Method: POST
+[INFO] 2025-01-18 02:31:14 - POST /api/dish/ [31m500[0m 42.410ms - PostmanRuntime/7.43.0
+[ERROR] 2025-01-18 02:32:13 - Error: Dishes validation failed: dishName: Path `dishName` is required. | URL: /api/dish/ | Method: POST
+[INFO] 2025-01-18 02:32:13 - POST /api/dish/ [31m500[0m 36.695ms - PostmanRuntime/7.43.0
+[ERROR] 2025-01-18 02:32:59 - Error: Dishes validation failed: dishName: Path `dishName` is required. | URL: /api/dish/ | Method: POST
+[INFO] 2025-01-18 02:32:59 - POST /api/dish/ [31m500[0m 5.496ms - PostmanRuntime/7.43.0
+[ERROR] 2025-01-18 02:33:45 - Error: Dishes validation failed: dishName: Path `dishName` is required. | URL: /api/dish/ | Method: POST
+[INFO] 2025-01-18 02:33:45 - POST /api/dish/ [31m500[0m 22.925ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:35:40 - POST /api/dish/ [32m201[0m 125.257ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:39:06 - POST /api/dish/ [32m201[0m 83.215ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:39:39 - POST /api/dish/ [32m201[0m 145.125ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:41:29 - POST /api/dish/ [32m201[0m 122.179ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:43:42 - POST /api/dish/ [32m201[0m 87.045ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:44:49 - POST /api/dish/ [32m201[0m 97.892ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:46:53 - POST /api/dish/ [32m201[0m 121.352ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:52:45 - POST /api/dish/ [32m201[0m 151.984ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:56:35 - POST /api/dish/ [32m201[0m 149.210ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 02:58:45 - POST /api/dish/ [32m201[0m 160.711ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 03:00:15 - POST /api/dish/ [32m201[0m 2594.131ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 03:03:02 - POST /api/dish/ [32m201[0m 2458.519ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 03:06:03 - POST /api/dish/ [32m201[0m 2655.096ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 03:10:40 - POST /api/dish/ [32m201[0m 6563.374ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 03:11:42 - POST /api/dish/ [32m201[0m 6147.685ms - PostmanRuntime/7.43.0

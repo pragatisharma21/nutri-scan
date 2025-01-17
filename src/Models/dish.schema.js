@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
 const DishesSchema = new mongoose.Schema({
+    creatorId: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     dishName: {
         type: String, required: true, unique: true
     } ,
     description: {type: String},
-    image: {type: String},
+    dishImage: {type: String},
     qrCode: {type: String, unique: true},
     ingredients: [
         {
