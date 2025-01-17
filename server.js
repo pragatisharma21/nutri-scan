@@ -28,6 +28,10 @@ app.use(
     })
 );
 
+app.get("/", (req, res)=>{
+    res.send(`<h1>Server is running</h1>`)
+})
+
 app.use("/api/user", userRoutes)
 app.use("/api/dish", dishRoutes)
 
