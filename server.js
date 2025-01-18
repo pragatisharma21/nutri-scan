@@ -23,11 +23,13 @@ connectDB();
 app.use(express.json());
 
 app.use(
-    CORS({
-        origin: ["*", process.env.CLIENT_URL],
-        credentials: true,
-    })
+    CORS()
 );
+
+// {
+//     origin: ["*", process.env.CLIENT_URL],
+//     credentials: true,
+// }
 
 app.get("/", (req, res)=>{
     res.send(`<h1>Server is running</h1>`)
