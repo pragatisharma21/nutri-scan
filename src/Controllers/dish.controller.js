@@ -1,28 +1,24 @@
 import Dishes from "../Models/dish.schema.js";
 import uploadToIMagekit from "../Utils/uploadImagekit.js";
 import qr from "qrcode";
-
+import color from "colors";
+import mongoose from "mongoose";
 
 const PLACEHOLDER_IMAGE =
   "https://ik.imagekit.io/tr0zrdazo/catering-item-placeholder-704x520.png?updatedAt=1737145812636";
 
 const uploadQRCodeToImageKit = async (newDish) => {
   try {
-
-
     const dataString = JSON.stringify(newDish);
-
 
     const qrCodeBuffer = await qr.toBuffer(dataString);
 
     const uploadedFile = await uploadToIMagekit({
-      buffer: qrCodeBuffer, 
+      buffer: qrCodeBuffer,
       originalname: `qr-${newDish._id}.png`,
     });
 
-    console.log(uploadedFile)
-    return uploadedFile
-
+    return uploadedFile;
   } catch (error) {
     console.error(`Error uploading QR Code:`, error);
     return null;
@@ -39,7 +35,7 @@ export const createDish = async (req, res, next) => {
     }
 
     const newDish = new Dishes({
-      creatorId: req.body.userId,
+      creatorId: req.user.id,
       dishName,
       dishImage: fileUrl,
       ingredients,
@@ -137,6 +133,33 @@ export const deleteDish = async (req, res, next) => {
       return res.status(404).json({ message: "Dish not found" });
     }
     res.status(200).json({ message: "Dish deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getDishesByUserId = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    
+    const allDishes = await Dishes.aggregate([
+      {
+        $match: {
+          creatorId: new mongoose.Types.ObjectId(userId),
+        }
+      },
+      {
+        $project: {
+          ingredients: 0, 
+        },
+      }
+    ]);
+
+    if (!allDishes) {
+      return res.status(404).json({ message: "No dishes posted by user" });
+    }
+
+    res.status(200).json(allDishes);
   } catch (error) {
     next(error);
   }
