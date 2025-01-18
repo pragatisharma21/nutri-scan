@@ -8,6 +8,7 @@ import {
 const router = express.Router();
 
 router.post("/", createDish);
+
 router.put("/:id", updateDish);
 router.delete("/:id", deleteDish);
 router.get("/:id", getDishById);
