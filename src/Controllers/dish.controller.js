@@ -141,7 +141,7 @@ export const deleteDish = async (req, res, next) => {
 export const getDishesByUserId = async (req, res, next) => {
   try {
     const userId = req.params.id;
-    
+
     const allDishes = await Dishes.aggregate([
       {
         $match: {
@@ -164,3 +164,17 @@ export const getDishesByUserId = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getDishByName = async(req, res, next)=>{
+  try {
+    const {dishName} = req.body;
+
+    const dishesData = await Dishes.find({
+      dishName: {$regex: dishName, $options: "i"}
+    });
+
+    res.status(200).json(dishesData)
+  } catch (err) {
+    next(err)
+  }
+}
