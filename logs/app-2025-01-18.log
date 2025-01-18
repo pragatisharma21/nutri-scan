@@ -44,3 +44,18 @@
 [INFO] 2025-01-18 15:19:24 - PUT /api/dish/678ad3412e534630ed467b97 [33m404[0m 64.656ms - PostmanRuntime/7.43.0
 [INFO] 2025-01-18 15:24:37 - GET /api/dish/678ad3412e534630ed467b97 [33m404[0m 83.125ms - PostmanRuntime/7.43.0
 [INFO] 2025-01-18 15:25:44 - GET /api/dish/678ad3412e534630ed467b97 [33m404[0m 72.044ms - PostmanRuntime/7.43.0
+[ERROR] 2025-01-18 17:43:33 - Error: secretOrPrivateKey must have a value | URL: /api/user/login | Method: POST
+[INFO] 2025-01-18 17:43:33 - POST /api/user/login [31m500[0m 287.664ms - PostmanRuntime/7.43.0
+[ERROR] 2025-01-18 17:44:29 - Error: secretOrPrivateKey must have a value | URL: /api/user/login | Method: POST
+[INFO] 2025-01-18 17:44:29 - POST /api/user/login [31m500[0m 203.828ms - PostmanRuntime/7.43.0
+[ERROR] 2025-01-18 17:44:34 - Error: secretOrPrivateKey must have a value | URL: /api/user/login | Method: POST
+[INFO] 2025-01-18 17:44:34 - POST /api/user/login [31m500[0m 205.775ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 17:48:44 - POST /api/user/login [32m200[0m 657.861ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:33:12 - GET /api/dishes/ [33m404[0m 29.556ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:38:14 - GET /api/dishes/ [33m404[0m 22.377ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:39:50 - GET /api/dishes/678b9eb2f8b36644ea94d8a5 [33m404[0m 1.158ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:42:09 - GET /api/dishes/678b9eb2f8b36644ea94d8a5 [33m404[0m 23.317ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:44:16 - POST /api/user/login [32m200[0m 273.806ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:45:11 - GET /api/dish/getDishByUserId/678b9eb2f8b36644ea94d8a5 [32m200[0m 62.783ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:46:18 - GET /api/dish/ [32m200[0m 137.325ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 18:47:25 - GET /api/dish/678b9eb2f8b36644ea94d8a5 [32m200[0m 69.223ms - PostmanRuntime/7.43.0
