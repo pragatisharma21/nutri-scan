@@ -51,44 +51,30 @@ export const createDish = async (req, res, next) => {
   }
 };
 
-//api to perform update of dish
 export const updateDish = async (req, res, next) => {
   const { id } = req.params;
   const { dishName, ingredients } = req.body;
-  // console.log(req.body);
-  // console.log(req.params);
+
   try {
-    // Find the existing dish
     const existingDish = await Dishes.findById(id);
     if (!existingDish) {
       return res.status(404).json({ message: "Dish not found" });
     }
 
-    //Check if user has permission to update
-    // if (existingDish.creatorId.toString() !== req.body.userId) {
-    //   return res
-    //     .status(403)
-    //     .json({ message: "Not authorized to update this dish" });
-    // }
-
-    // Handle image upload if new image is provided
     let updatedImageUrl = existingDish.dishImage;
     if (req.file) {
       updatedImageUrl = await uploadToIMagekit(req.file);
     }
 
-    // Prepare update data
     const updateData = {
       dishName: dishName || existingDish.dishName,
       ingredients: ingredients || existingDish.ingredients,
     };
 
-    // Update the dish
     const updatedDish = await Dishes.findByIdAndUpdate(id, updateData, {
       new: true,
     });
 
-    // Generate and upload new QR code if dish data changed
     if (dishName || ingredients) {
       const newQRCode = await uploadQRCodeToImageKit(updatedDish);
       updatedDish.qrCode = newQRCode;
@@ -100,7 +86,6 @@ export const updateDish = async (req, res, next) => {
       dish: updatedDish,
     });
   } catch (error) {
-    // Handle unique constraint violation
     if (error.code === 11000) {
       return res.status(400).json({
         message: "A dish with this name already exists",
@@ -110,7 +95,6 @@ export const updateDish = async (req, res, next) => {
   }
 };
 
-//api to get a dish by id
 export const getDishById = async (req, res, next) => {
   const { id } = req.params;
   console.log(`id: ${id} typeof: ${typeof id}`);
@@ -124,7 +108,7 @@ export const getDishById = async (req, res, next) => {
     next(error);
   }
 };
-//api to detele a dish by id
+
 export const deleteDish = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -146,13 +130,13 @@ export const getDishesByUserId = async (req, res, next) => {
       {
         $match: {
           creatorId: new mongoose.Types.ObjectId(userId),
-        }
+        },
       },
       {
         $project: {
-          ingredients: 0, 
+          ingredients: 0,
         },
-      }
+      },
     ]);
 
     if (!allDishes) {
@@ -165,16 +149,37 @@ export const getDishesByUserId = async (req, res, next) => {
   }
 };
 
-export const getDishByName = async(req, res, next)=>{
+export const getDishByName = async (req, res, next) => {
   try {
-    const {dishName} = req.body;
+    const { dishName } = req.body;
 
     const dishesData = await Dishes.find({
-      dishName: {$regex: dishName, $options: "i"}
+      dishName: { $regex: dishName, $options: "i" },
     });
 
-    res.status(200).json(dishesData)
+    res.status(200).json(dishesData);
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
+
+export const getAllDishes = async (req, res, next) => {
+  try {
+    const { page = 1, limit = 10 } = req.query;
+
+    const dishes = await Dishes.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
+    const count = await Dishes.countDocuments();
+
+    res.json({
+      dishes,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
