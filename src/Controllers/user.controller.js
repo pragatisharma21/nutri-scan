@@ -23,7 +23,7 @@ import User from "../Models/user.model.js";
 };
   
 
-export const login = async(req, res)=>{
+export const login = async(req, res, next)=>{
     try {
         const { email, password} = req.body
         const isAvailable = await User.findOne({email})
