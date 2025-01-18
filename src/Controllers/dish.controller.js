@@ -1,5 +1,8 @@
 import Dishes from "../Models/dish.schema.js";
-import uploadToIMagekit from "../Utils/uploadImagekit.js";
+import {
+  uploadToIMagekit,
+  deleteFromImageKitByUrl,
+} from "../Utils/imagekitOperations.js";
 import qr from "qrcode";
 import color from "colors";
 import mongoose from "mongoose";
@@ -53,9 +56,10 @@ export const createDish = async (req, res, next) => {
 
 export const updateDish = async (req, res, next) => {
   const { id } = req.params;
-  const { dishName, ingredients } = req.body;
 
   try {
+    const { dishName, ingredients } = req.body;
+
     const existingDish = await Dishes.findById(id);
     if (!existingDish) {
       return res.status(404).json({ message: "Dish not found" });
@@ -63,17 +67,29 @@ export const updateDish = async (req, res, next) => {
 
     let updatedImageUrl = existingDish.dishImage;
     if (req.file) {
-      updatedImageUrl = await uploadToIMagekit(req.file);
+      const newImageUrl = await uploadToIMagekit(req.file);
+
+      if (
+        existingDish.dishImage &&
+        existingDish.dishImage !== PLACEHOLDER_IMAGE
+      ) {
+        await deleteFromImageKitByUrl(existingDish.dishImage);
+      }
+
+      updatedImageUrl = newImageUrl;
     }
 
     const updateData = {
       dishName: dishName || existingDish.dishName,
       ingredients: ingredients || existingDish.ingredients,
+      dishImage: updatedImageUrl,
     };
 
     const updatedDish = await Dishes.findByIdAndUpdate(id, updateData, {
       new: true,
+      runValidators: true,
     });
+
 
     if (dishName || ingredients) {
       const newQRCode = await uploadQRCodeToImageKit(updatedDish);
@@ -86,14 +102,11 @@ export const updateDish = async (req, res, next) => {
       dish: updatedDish,
     });
   } catch (error) {
-    if (error.code === 11000) {
-      return res.status(400).json({
-        message: "A dish with this name already exists",
-      });
-    }
+    console.error("Error updating dish:", error.message);
     next(error);
   }
 };
+
 
 export const getDishById = async (req, res, next) => {
   const { id } = req.params;

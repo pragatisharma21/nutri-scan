@@ -15,9 +15,9 @@ router.post("/", authMiddleware, createDish);
 router.get("/getDishByUserId/:id", authMiddleware, getDishesByUserId);
 router.get("/getDishByName", getDishByName);
 
-router.put("/:id", updateDish);
-router.delete("/:id", deleteDish);
-router.get("/:id", getDishById);
-router.get("/", getAllDishes);
+router.put("/updateDishById/:id", updateDish);
+router.delete("/deleteDishById/:id",  deleteDish);
+router.get("/getDishById/:id", getDishById);
+router.get("/getAllDishes", getAllDishes);
 
 export default router;
