@@ -1,6 +1,7 @@
 import express from 'express';
 import connectDB from './src/Config/db.config.js';
 import dotenv from 'dotenv';
+import qrcode from 'qrcode-generator';
 import CORS from "cors";
 import requestLogger from './src/Middlewares/logger.middleware.js';
 import errorHandler from './src/Middlewares/errorhandler.middleware.js';

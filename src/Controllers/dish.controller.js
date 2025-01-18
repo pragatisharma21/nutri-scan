@@ -1,7 +1,6 @@
 import Dishes from "../Models/dish.schema.js";
 import uploadToIMagekit from "../Utils/uploadImagekit.js";
-import QRCode from "qrcode";
-import QRCodegenerator from "qrcode-generator"
+import qr from "qrcode";
 
 const PLACEHOLDER_IMAGE =
   "https://ik.imagekit.io/tr0zrdazo/catering-item-placeholder-704x520.png?updatedAt=1737145812636";
@@ -9,23 +8,18 @@ const PLACEHOLDER_IMAGE =
 const uploadQRCodeToImageKit = async (newDish) => {
   try {
 
-    const qrCode = QRCodegenerator(0, "M");
-    qrCode.addData(newDish.toString());
+    const dataString = JSON.stringify(newDish);
 
-    qrCode.make();
+    const qrCodeBuffer = await qr.toBuffer(dataString);
 
-    const qrCodeDataUrl = qrCode.createDataURL(20);
+    const uploadedFile = await uploadToIMagekit({
+      buffer: qrCodeBuffer, 
+      originalname: `qr-${newDish._id}.png`,
+    });
 
-    const base64Data = qrCodeDataUrl.replace(/^data:image\/png;base64,/, "");
-    const buffer = Buffer.from(base64Data, 'base64');
+    console.log(uploadedFile)
+    return uploadedFile
 
-    const file = {
-      buffer: buffer,
-      originalname: `QR-${newDish._id}.png`,
-    };
-
-    const uploadResponse = await uploadToIMagekit(file);
-    return uploadResponse;
   } catch (error) {
     console.error(`Error uploading QR Code:`, error);
     return null;
