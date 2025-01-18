@@ -2,6 +2,11 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
 import User from "../Models/user.model.js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const secret = process.env.JWT_SECRET
 
  export const signUp = async (req, res, next) => {
   try {
@@ -23,7 +28,7 @@ import User from "../Models/user.model.js";
 };
   
 
-export const login = async(req, res)=>{
+export const login = async(req, res, next)=>{
     try {
         const { email, password} = req.body
         const isAvailable = await User.findOne({email})
@@ -40,7 +45,7 @@ export const login = async(req, res)=>{
             id: isAvailable._id,
             username: isAvailable.name,
             email: isAvailable.email
-        }, process.env.JWT_SECRET, {expiresIn: "1h"});
+        }, secret, {expiresIn: "1h"});
 
         res.status(200).json({token})
 
