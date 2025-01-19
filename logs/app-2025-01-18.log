@@ -59,3 +59,11 @@
 [INFO] 2025-01-18 18:45:11 - GET /api/dish/getDishByUserId/678b9eb2f8b36644ea94d8a5 [32m200[0m 62.783ms - PostmanRuntime/7.43.0
 [INFO] 2025-01-18 18:46:18 - GET /api/dish/ [32m200[0m 137.325ms - PostmanRuntime/7.43.0
 [INFO] 2025-01-18 18:47:25 - GET /api/dish/678b9eb2f8b36644ea94d8a5 [32m200[0m 69.223ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 22:33:48 - GET /api/dish/ [32m200[0m 977.129ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 22:39:44 - GET /api/dish/ [32m200[0m 22714.685ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 22:48:18 - GET /api/dish/678b9eb2f8b36644ea94d8a5 [32m200[0m 58.249ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 23:05:17 - GET /api/dish/ [32m200[0m 645.167ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 23:06:02 - GET /api/dish/678b9eb2f8b36644ea94d8a5 [32m200[0m 61.108ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 23:10:51 - POST /api/dish/678b9eb2f8b36644ea94d8a5 [33m404[0m 4.511ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 23:20:02 - GET /api/dish/678b9eb2f8b36644ea94d8a5 [32m200[0m 57.478ms - PostmanRuntime/7.43.0
+[INFO] 2025-01-18 23:20:09 - GET /api/dish/678b9eb2f8b36644ea94d8a5 [32m200[0m 61.508ms - PostmanRuntime/7.43.0
