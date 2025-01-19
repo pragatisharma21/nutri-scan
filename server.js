@@ -14,7 +14,7 @@ dotenv.config();
 
 const allowedOrigins = [
   'http://localhost:5173', 
-  'https:/https://nutri-scan-sigma.vercel.app'
+  'https://nutri-scan-sigma.vercel.app'
 ];
 
 
