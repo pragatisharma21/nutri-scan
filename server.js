@@ -14,7 +14,7 @@ dotenv.config();
 
 const allowedOrigins = [
   'http://localhost:5173', 
-  'https://your-vercel-app.vercel.app'
+  'https:/https://nutri-scan-sigma.vercel.app'
 ];
 
 
@@ -31,6 +31,7 @@ app.use(express.json());
 app.use(
   CORS({
     origin: allowedOrigins,
+    credentials: true,
     methods:  ['GET', 'POST', 'PUT', 'DELETE'],
   })
 );
