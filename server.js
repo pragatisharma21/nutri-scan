@@ -12,7 +12,11 @@ import dishRoutes from "./src/Routes/dish.routes.js";
 
 dotenv.config();
 
-const clientUrl = process.env.CLIENT_URL || "https://nutri-scan-site.vercel.app"
+const allowedOrigins = [
+  'http://localhost:5173', 
+  'https://your-vercel-app.vercel.app'
+];
+
 
 const app = express();
 
@@ -26,7 +30,7 @@ app.use(express.json());
 
 app.use(
   CORS({
-    origin: [clientUrl, "http://localhost:5173"],
+    origin: allowedOrigins,
     methods: "GET,PUT,PATCH,POST,DELETE"
   })
 );
