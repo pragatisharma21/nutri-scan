@@ -29,7 +29,8 @@ const uploadQRCodeToImageKit = async (newDish) => {
 };
 
 export const createDish = async (req, res, next) => {
-  const { dishName, ingredients } = req.body;
+  const { dishName, ingredients, description } = req.body;
+  console.log(dishName, ingredients)
   try {
     let fileUrl = PLACEHOLDER_IMAGE;
 
@@ -39,9 +40,10 @@ export const createDish = async (req, res, next) => {
 
     const newDish = new Dishes({
       creatorId: req.user.id,
-      dishName,
+      dishName: dishName,
       dishImage: fileUrl,
       ingredients,
+      description
     });
 
     newDish.qrCode = await uploadQRCodeToImageKit(newDish);

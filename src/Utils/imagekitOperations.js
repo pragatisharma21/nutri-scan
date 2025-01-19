@@ -31,7 +31,6 @@ export const uploadToIMagekit = async (file) => {
       folder: "/uploads",
     });
 
-    console.log("upload image success");
     return uploadedFile.url;
   } catch (error) {
     console.log(error.message);
