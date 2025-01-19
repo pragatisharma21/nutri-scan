@@ -14,10 +14,10 @@ const DishesSchema = new mongoose.Schema(
     qrCode: { type: String, unique: true },
     ingredients: [
       {
-        name: { type: String, required: true, lowercase: true },
-        quantity: { type: Number, required: true },
-        unit: { type: String, required: true },
-        caloriesPerUnit: { type: Number, required: true },
+        name: { type: String, lowercase: true },
+        quantity: { type: Number, },
+        unit: { type: String, },
+        caloriesPerUnit: { type: Number, },
       },
     ],
   },
