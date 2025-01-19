@@ -11,7 +11,7 @@ import {
 import authMiddleware from "../Middlewares/auth.middleware.js";
 const router = express.Router();
 
-router.post("/", authMiddleware, createDish);
+router.post("/addDish", authMiddleware, createDish);
 router.get("/getDishByUserId/:id", authMiddleware, getDishesByUserId);
 router.get("/getDishByName", getDishByName);
 
