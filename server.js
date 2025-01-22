@@ -13,8 +13,6 @@ import dishRoutes from "./src/Routes/dish.routes.js";
 dotenv.config();
 
 const allowedOrigins = [
-  'http://localhost:5173', 
-  'https://nutri-scan-sigma.vercel.app',
   "https://nutri-scan-site.vercel.app",
   "https://nutriscan-frontend.vercel.app"
 ];
